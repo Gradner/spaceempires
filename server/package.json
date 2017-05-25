@@ -1,0 +1,15 @@
+{
+  "name": "universerver",
+  "version": "0.0.1",
+  "description": "Server that controls the universe",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gradner",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "socket.io": "^2.0.1"
+  }
+}
