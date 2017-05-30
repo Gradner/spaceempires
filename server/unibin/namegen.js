@@ -6,12 +6,13 @@ var namePool = [
 ]
 
 function createName(maxLength){
-  var name;
+  var name = '';
   var nameLength = Math.floor(Math.random() * maxLength) + 1;
   for(var i = 0; i < nameLength; i++){
-    var pool = Math.round(Math.random() * namePool.length);
-    var pick = Math.round(Math.random() * namePool[pool].length);
-    name += namePool[pool][pick];
+    var pool = namePool[Math.floor(Math.random() * namePool.length)];
+    console.log(pool);
+    var pick = pool[Math.floor(Math.random() * pool.length)];
+    name += pick;
   }
   return name;
 }
