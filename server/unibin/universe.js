@@ -10,6 +10,9 @@ class Universe {
     this.y = options.y;
     this.maxPlanets = options.maxPlanets;
     this.stars = [];
+    this.age = 0;
+    this.starCount = 0;
+    this.planetCount = 0;
     for(var i = 0; i < options.stars; i++){
       var star = new Star({
         x : this.x,
@@ -24,16 +27,19 @@ class Universe {
   }
 
   update(){
+    var startTime = Date.now();
+    this.age += 1;
     this.stars.forEach((star) => {
       star.update();
     });
+    var endTime = Date.now();
+    console.log(endTime - startTime);
   }
 }
 
 class Star {
   constructor(options){
     this.init(options);
-    return this;
   }
 
   init(options){
@@ -47,6 +53,7 @@ class Star {
     for(var p = 0; p < planetNumber; p++){
       var planet = new Planet({
         sysid : p,
+        starname : this.name,
       });
       this.planets.push(planet);
     }
@@ -62,11 +69,11 @@ class Star {
 class Planet {
   constructor(options){
     this.init(options);
-    return this;
   }
 
   init(options){
-    this.sysid = options.id;
+    this.sysid = options.sysid;
+    this.name = options.starname + " " + nameGen.romanNumeral(this.sysid + 1);
     this.type = Math.round((Math.random() * 6) + 1);
   }
 

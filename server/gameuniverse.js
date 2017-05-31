@@ -23,14 +23,14 @@ http.listen(app.get('port'), function(){
   gameUniverse = new Universe({
     x : 800,
     y : 600,
-    maxPlanets : 14,
-    stars : 400,
+    maxPlanets : 10,
+    stars : 18000,
   });
-  console.log(gameUniverse.stars);
-  console.log(gameUniverse.starCount + " Stars in the Universe");
-  console.log(gameUniverse.planetCount + " Planets in the Universe");
+
+  setInterval(function(){gameUniverse.update()}, 1000);
+
 });
 
 app.get('/', function(req, res){
   res.send(gameUniverse);
-})
+});
