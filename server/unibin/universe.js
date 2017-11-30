@@ -1,4 +1,5 @@
 var nameGen = require('./namegen');
+var Star = require('./star')
 
 class Universe {
   constructor(options){
@@ -15,6 +16,7 @@ class Universe {
     this.planetCount = 0;
     for(var i = 0; i < options.stars; i++){
       var star = new Star({
+        name: nameGen.createName(4),
         x : this.x,
         y : this.y,
         id : i,
@@ -34,51 +36,6 @@ class Universe {
     });
     var endTime = Date.now();
     console.log(endTime - startTime);
-  }
-}
-
-class Star {
-  constructor(options){
-    this.init(options);
-  }
-
-  init(options){
-    this.name = nameGen.createName(4);
-    this.x = Math.round(Math.random() * options.x);
-    this.y = Math.round(Math.random() * options.y);
-    this.type = Math.round((Math.random() * 4) + 1);
-    this.id = options.id;
-    this.planets = [];
-    var planetNumber = Math.round(Math.random() * options.maxPlanets);
-    for(var p = 0; p < planetNumber; p++){
-      var planet = new Planet({
-        sysid : p,
-        starname : this.name,
-      });
-      this.planets.push(planet);
-    }
-  }
-
-  update(){
-    this.planets.forEach((planet) => {
-      planet.update();
-    });
-  }
-}
-
-class Planet {
-  constructor(options){
-    this.init(options);
-  }
-
-  init(options){
-    this.sysid = options.sysid;
-    this.name = options.starname + " " + nameGen.romanNumeral(this.sysid + 1);
-    this.type = Math.round((Math.random() * 6) + 1);
-  }
-
-  update(){
-
   }
 }
 
