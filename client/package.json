@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "babylonjs": "^3.0.1-alpha",
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "socket.io-client": "^2.0.4"
   }
 }

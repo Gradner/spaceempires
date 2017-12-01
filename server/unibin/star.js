@@ -9,15 +9,15 @@ module.exports = class Star {
 
   init(options){
     this.name = options.name;
-    this.x = Math.round(Math.random() * options.x);
-    this.y = Math.round(Math.random() * options.y);
+    this.x = (Math.random() * options.x).toFixed(3);
+    this.y = (Math.random() * options.y).toFixed(3);
     this.type = Math.round((Math.random() * 4) + 1);
     this.id = options.id;
     this.planets = [];
     var planetNumber = Math.round(Math.random() * options.maxPlanets);
     for(var p = 0; p < planetNumber; p++){
       var planet = new Planet({
-        name: options.name + " " + nameGen.romanNumeral(p),
+        name: options.name + " " + nameGen.romanNumeral(p + 1),
         id : p
       });
       this.planets.push(planet);

@@ -10,7 +10,7 @@ var Universe = require('./unibin/universe').Universe;
 var app = express();
 var http = require('http').createServer(app);
 
-var io = require('socket.io');
+var io = require('socket.io').listen(9000);
 var serv_io = io.listen(http);
 
 // all environments
@@ -27,10 +27,24 @@ http.listen(app.get('port'), function(){
     stars : 18000,
   });
 
-  setInterval(function(){gameUniverse.update()}, 1000);
+  setInterval(function(){
+    gameUniverse.update();
+    io.emit('uniUpdate', gameUniverse);
+  }, 5000);
 
 });
 
 app.get('/', function(req, res){
   res.send(gameUniverse);
 });
+
+io.on('connection', function (socket) {
+  var age = gameUniverse.age;
+  console.log('gameserver connected:', socket.client.id);
+  socket.emit('initialize', gameUniverse);
+
+});
+
+io.on('disconnect', function(){
+  console.log('gameserver disconnected:', socket.client.id);
+})
