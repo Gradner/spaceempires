@@ -6,12 +6,13 @@ module.exports = class Planet {
 
   init(options){
     this.name = options.name;
-    this.sysid = options.id;
-    this.id = options.uid;
-    this.type = Math.round((Math.random() * 6) + 1);
+    this.sysid = options.sysid;
+    this.id = options.id;
+    this.type = options.type;
+    this.ownership = options.ownership || false;
   }
 
   update(){
-    
+
   }
 }

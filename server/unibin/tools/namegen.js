@@ -3,6 +3,8 @@ var namePool = [
   ['eis', 'est', 'ire', 'oor', 'hin', 'eft', 'ort', 'jin', 'fus', 'cus', 'alt', 'met', 'jor', 'lin', 'tes', 'mor', 'nie'],
   ['vie', 'vae', 'dan', 'nur', 'bek', 'des', 'mal', 'den', 'vis', 'xin', 'por', 'vee', 'lor', 'vin', 'xae', 'yur', 'iss'],
   ['leer', 'heim', 'rault', 'gault', 'dest', 'brach', 'oord', 'eint', 'lour', 'osset', 'drach', 'trach', 'morde', 'tine'],
+  ['dran', 'trost', 'ober', 'dosin', 'mesa', 'dore', 'amn', 'des', 'drin', 'fors', 'crol', 'tuk', 'pos', 'rend', 'vex'],
+  ['tal', 'gar', 'bin', 'dey', 'rey', 'yun', 'bral', 'brai', 'hest', 'odd', 'fes', 'yar', 'kor', 'krast', 'fral', 'ris']
 ]
 
 function createName(maxLength){

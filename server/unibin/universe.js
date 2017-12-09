@@ -1,5 +1,6 @@
-var nameGen = require('./namegen');
-var Star = require('./star')
+var nameGen = require('./tools/namegen');
+var System = require('./system')
+var Planet = require('./planet')
 
 class Universe {
   constructor(options){
@@ -7,32 +8,55 @@ class Universe {
   }
 
   init(options){
-    this.x = options.x;
-    this.y = options.y;
-    this.maxPlanets = options.maxPlanets;
-    this.stars = [];
-    this.age = 0;
-    this.starCount = 0;
-    this.planetCount = 0;
-    for(var i = 0; i < options.stars; i++){
-      var star = new Star({
+    this.xMax = options.x;
+    this.yMax = options.y;
+    this.systems = options.systems || this.createSystems(options.newOpts);
+    this.planets = options.planets || this.createPlanets(options.newOpts, this.systems);
+    this.age = options.age || 0;
+  }
+
+  createSystems(options){
+    var systems = [];
+    for(var i = 0; i < options.systems; i++){
+      var system = new System({
         name: nameGen.createName(4),
-        x : this.x,
-        y : this.y,
+        xMax : this.xMax,
+        yMax : this.yMax,
         id : i,
-        maxPlanets : this.maxPlanets,
+        maxPlanets : options.maxPlanets,
       })
-      this.stars.push(star);
-      this.starCount += 1;
-      this.planetCount += star.planets.length;
+      systems.push(system);
     }
+    return systems;
+  }
+
+  createPlanets(options, systems){
+    var planets = [];
+    var planetid = 0;
+    for(var i = 0; i < systems.length; i++){
+      var planetNumber = Math.round(Math.random() * options.maxPlanets);
+      for(var p = 0; p < planetNumber; p++){
+        var planet = new Planet({
+          name: systems[i].name + " " + nameGen.romanNumeral(p + 1),
+          id: planetid,
+          sysid : i,
+          type: Math.round((Math.random() * 6) + 1)
+        });
+        planetid += 1;
+        planets.push(planet);
+      }
+    }
+    return planets;
   }
 
   update(){
     var startTime = Date.now();
     this.age += 1;
-    this.stars.forEach((star) => {
-      star.update();
+    this.systems.forEach((system) => {
+      system.update();
+    });
+    this.planets.forEach(function(planet){
+      planet.update();
     });
     var endTime = Date.now();
     console.log(endTime - startTime);

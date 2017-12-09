@@ -33,11 +33,11 @@ function dataReady (data) {
      // Dim the light a small amount
      light.intensity = .5;
 
-     for(var i = 0; i < data.stars.length; i++){
+     for(var i = 0; i < data.systems.length; i++){
        // Let's try our built-in 'sphere' shape. Params: name, subdivisions, size, scene
-       var sphere = BABYLON.Mesh.CreateSphere(data.stars[i].name, 4, 0.2, scene);
-       sphere.position.x = data.stars[i].x;
-       sphere.position.z = data.stars[i].y;
+       var sphere = BABYLON.Mesh.CreateSphere(data.systems[i].name, 4, 0.2, scene);
+       sphere.position.x = data.systems[i].x;
+       sphere.position.z = data.systems[i].y;
        sphere.position.y = 0.1;
      }
      // Leave this function

@@ -23,8 +23,10 @@ http.listen(app.get('port'), function(){
   gameUniverse = new Universe({
     x : 800,
     y : 600,
-    maxPlanets : 10,
-    stars : 18000,
+    newOpts : {
+      maxPlanets : 10,
+      systems : 18000
+    }
   });
 
   setInterval(function(){

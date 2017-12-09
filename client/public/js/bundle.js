@@ -7291,12 +7291,11 @@ function dataReady(data) {
   var canvas = document.getElementById("renderCanvas");
   // Load the BABYLON 3D engine
   var engine = new BABYLON.Engine(canvas, true);
-  // -------------------------------------------------------------
-  // Here begins a function that we will 'call' just after it's built
+
   var createScene = function createScene(data) {
-    // Now create a basic Babylon Scene object
+    // make a baberlon
     var scene = new BABYLON.Scene(engine);
-    // Change the scene background color to green.
+    // blackground engage
     scene.clearColor = new BABYLON.Color3(0, 0, 0);
     // This creates and positions a free camera
     var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(400, 5, 300), scene);
@@ -7309,11 +7308,11 @@ function dataReady(data) {
     // Dim the light a small amount
     light.intensity = .5;
 
-    for (var i = 0; i < data.stars.length; i++) {
+    for (var i = 0; i < data.systems.length; i++) {
       // Let's try our built-in 'sphere' shape. Params: name, subdivisions, size, scene
-      var sphere = BABYLON.Mesh.CreateSphere(data.stars[i].name, 4, 0.2, scene);
-      sphere.position.x = data.stars[i].x;
-      sphere.position.z = data.stars[i].y;
+      var sphere = BABYLON.Mesh.CreateSphere(data.systems[i].name, 4, 0.2, scene);
+      sphere.position.x = data.systems[i].x;
+      sphere.position.z = data.systems[i].y;
       sphere.position.y = 0.1;
     }
     // Leave this function
